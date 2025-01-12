@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="?attr/colorSurface"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/preferences_settings"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+        android:layout_marginBottom="16dp"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/settings_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Graphics Settings -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/graphics_settings"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_show_fps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/show_fps"
+                android:minHeight="64dp"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_skip_efb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skip_efb_access"
+                android:minHeight="64dp"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_efb_texture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/efb_copy_method"
+                android:minHeight="64dp"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_vi_skip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/vi_skip"
+                android:minHeight="64dp"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_ignore_format"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ignore_format_changes"
+                android:minHeight="64dp"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_arbitrary_mipmap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/arbitrary_mipmap_detection"
+                android:minHeight="64dp"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_immediate_xfb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/immediate_xfb"
+                android:minHeight="64dp"/>
+
+            <!-- Core Settings -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/core_settings"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_sync_skip_idle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sync_on_skip_idle"
+                android:minHeight="64dp"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_overclock_enable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/overclock_enable"
+                android:minHeight="64dp"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_jit_follow_branch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/jit_follow_branch"
+                android:minHeight="64dp"/>
+
+            <!-- Sliders -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/overclock_title"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/overclock"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="@dimen/spacing_large"
+                    android:valueFrom="0"
+                    android:valueTo="400"
+                    android:stepSize="5"/>
+
+                <TextView
+                    android:id="@+id/text_overclock_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="48dp"
+                    android:gravity="end"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/emulation_control_scale"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/seekbar_display_scale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_large"
+                android:valueFrom="0"
+                android:valueTo="200"
+                android:stepSize="5"/>
+
+            <TextView
+                android:id="@+id/text_display_scale_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"/>
+
+            <!-- IR Settings (for Wii games) -->
+            <LinearLayout
+                android:id="@+id/ir_settings_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pitch"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="8dp"/>
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/seekbar_ir_pitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_large"
+                    android:valueFrom="0"
+                    android:valueTo="50"
+                    android:stepSize="1"/>
+
+                <TextView
+                    android:id="@+id/text_ir_pitch_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="16dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yaw"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"/>
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/seekbar_ir_yaw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_large"
+                    android:valueFrom="0"
+                    android:valueTo="50"
+                    android:stepSize="1"/>
+
+                <TextView
+                    android:id="@+id/text_ir_yaw_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="16dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vertical_offset"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/seekbar_ir_vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="@dimen/spacing_large"
+                        android:valueFrom="0"
+                        android:valueTo="50"
+                        android:stepSize="1"/>
+
+                    <TextView
+                        android:id="@+id/text_ir_vertical_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="48dp"
+                        android:gravity="end"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Preference Settings -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/preferences_settings"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_phone_rumble"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/emulation_control_rumble"
+                android:minHeight="64dp"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_touch_pointer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/touch_screen_pointer"
+                android:minHeight="64dp"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_pointer_recenter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/touch_screen_pointer_recenter"
+                android:minHeight="64dp"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_joystick_rel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/joystick_relative_center"
+                android:minHeight="64dp"/>
+
+            <!-- IR Touch Mode -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ir_mode"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <RadioGroup
+                android:id="@+id/radio_group_ir_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/radio_ir_click"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"/>
+
+                <RadioButton
+                    android:id="@+id/radio_ir_stick"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"/>
+            </RadioGroup>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

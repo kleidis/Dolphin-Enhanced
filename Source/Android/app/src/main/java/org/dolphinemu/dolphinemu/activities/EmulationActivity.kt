@@ -1,5 +1,6 @@
 package org.dolphinemu.dolphinemu.activities
 
+import org.dolphinemu.dolphinemu.features.settings.ui.EmulationSettingsDrawer
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
@@ -22,9 +23,11 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 import org.dolphinemu.dolphinemu.NativeLibrary
 import org.dolphinemu.dolphinemu.R
-import org.dolphinemu.dolphinemu.dialogs.RunningSettingDialog
 import org.dolphinemu.dolphinemu.dialogs.StateSavesDialog
 import org.dolphinemu.dolphinemu.features.settings.model.BooleanSetting
 import org.dolphinemu.dolphinemu.features.settings.model.Settings
@@ -62,6 +65,9 @@ open class EmulationActivity : AppCompatActivity() {
     private var paths: Array<String>? = null
     var savedState: String? = null
         private set
+
+    private lateinit var settingsDrawer: EmulationSettingsDrawer
+    private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,19 +110,24 @@ open class EmulationActivity : AppCompatActivity() {
 
         title = selectedTitle
         setContentView(R.layout.activity_emulation)
-
-        // Find or create the EmulationFragment
-        emulationFragment = supportFragmentManager
-            .findFragmentById(R.id.frame_emulation_fragment) as EmulationFragment?
         if (emulationFragment == null) {
-            emulationFragment = EmulationFragment.newInstance(paths)
-            supportFragmentManager.beginTransaction()
-                .add(R.id.frame_emulation_fragment, emulationFragment!!)
-                .commit()
-        }
+            // Find or create the EmulationFragment
+            emulationFragment = supportFragmentManager
+                .findFragmentById(R.id.frame_emulation_fragment) as EmulationFragment?
+            if (emulationFragment == null) {
+                emulationFragment = EmulationFragment.newInstance(paths)
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.frame_emulation_fragment, emulationFragment!!)
+                    .commit()
+            }
 
+        }
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
         loadPreferences()
+
+        drawerLayout = findViewById(R.id.drawer_layout)
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+        settingsDrawer = EmulationSettingsDrawer(this, drawerLayout, navigationView)
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -129,6 +140,7 @@ open class EmulationActivity : AppCompatActivity() {
         super.onDestroy()
         sActivity.clear()
         savePreferences()
+        settingsDrawer.cleanup()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -153,18 +165,30 @@ open class EmulationActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
+            drawerLayout.closeDrawer(GravityCompat.END)
+            return
+        }
+
         if (menuVisible) {
             emulationFragment!!.stopEmulation()
             finish()
         } else {
             menuVisible = true
             emulationFragment!!.stopConfiguringControls()
-            val dialog = RunningSettingDialog.newInstance()
-            dialog.show(supportFragmentManager, "RunningSettingDialog")
-            dialog.setOnDismissListener {
-                menuVisible = false
-                enableFullscreenImmersive()
-            }
+            drawerLayout.openDrawer(GravityCompat.END)
+
+            drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
+                override fun onDrawerSlide(drawerView: View, slideOffset: Float) {}
+                override fun onDrawerOpened(drawerView: View) {}
+                override fun onDrawerStateChanged(newState: Int) {}
+
+                override fun onDrawerClosed(drawerView: View) {
+                    menuVisible = false
+                    enableFullscreenImmersive()
+                    drawerLayout.removeDrawerListener(this)
+                }
+            })
         }
     }
 

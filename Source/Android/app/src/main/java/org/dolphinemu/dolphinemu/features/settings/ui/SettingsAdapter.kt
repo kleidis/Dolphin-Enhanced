@@ -199,7 +199,7 @@ class SettingsAdapter(private val activity: SettingsActivity) :
         }
         dialog = builder.show()
 
-        textInputLayout = view.findViewById(R.id.text_input)
+        textInputLayout = view.findViewById(R.id.text_value)
         textSliderValue = view.findViewById(R.id.text_value)
         textSliderValue!!.setText(seekbarProgress.toString())
         textInputLayout!!.suffixText = item.units

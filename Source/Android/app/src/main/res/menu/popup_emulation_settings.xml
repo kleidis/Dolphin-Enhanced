@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group_graphics">
+        <item
+            android:id="@+id/action_show_fps"
+            android:checkable="true"
+            android:title="@string/show_fps" />
+        <item
+            android:id="@+id/action_skip_efb"
+            android:checkable="true"
+            android:title="@string/skip_efb_access" />
+        <item
+            android:id="@+id/action_efb_texture"
+            android:checkable="true"
+            android:title="@string/efb_copy_method" />
+        <item
+            android:id="@+id/action_vi_skip"
+            android:checkable="true"
+            android:title="@string/vi_skip" />
+        <item
+            android:id="@+id/action_ignore_format"
+            android:checkable="true"
+            android:title="@string/ignore_format_changes" />
+        <item
+            android:id="@+id/action_arbitrary_mipmap"
+            android:checkable="true"
+            android:title="@string/arbitrary_mipmap_detection" />
+        <item
+            android:id="@+id/action_immediate_xfb"
+            android:checkable="true"
+            android:title="@string/immediate_xfb" />
+    </group>
+
+    <group android:id="@+id/group_core">
+        <item
+            android:id="@+id/action_sync_skip_idle"
+            android:checkable="true"
+            android:title="@string/sync_on_skip_idle" />
+        <item
+            android:id="@+id/action_overclock_enable"
+            android:checkable="true"
+            android:title="@string/overclock_enable" />
+        <item
+            android:id="@+id/action_jit_follow_branch"
+            android:checkable="true"
+            android:title="@string/jit_follow_branch" />
+    </group>
+
+    <group android:id="@+id/group_controls">
+        <item
+            android:id="@+id/action_phone_rumble"
+            android:checkable="true"
+            android:title="@string/emulation_control_rumble" />
+        <item
+            android:id="@+id/action_joystick_relative"
+            android:checkable="true"
+            android:title="@string/joystick_relative_center" />
+    </group>
+</menu>

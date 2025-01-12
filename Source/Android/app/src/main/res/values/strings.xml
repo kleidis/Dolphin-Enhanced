@@ -474,4 +474,9 @@ It can efficiently compress both junk data and encrypted Wii data.
     <string name="input_submenu">Input</string>
     <string name="build_version">1.2</string>
 
+    <string name="core_settings">Cpre</string>
+    <string name="graphics_settings">Graphics</string>
+    <string name="ir_mode">Ir mode</string>
+
+
 </resources>

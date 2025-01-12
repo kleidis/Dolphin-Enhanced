@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group_main_actions">
+        <item
+            android:id="@+id/nav_screenshot"
+            android:icon="@drawable/ic_screenshot"
+            android:title="@string/emulation_screenshot" />
+        <item
+            android:id="@+id/nav_quicksave"
+            android:icon="@drawable/ic_quicksave"
+            android:title="@string/emulation_quicksave" />
+        <item
+            android:id="@+id/nav_quickload"
+            android:icon="@drawable/ic_quickload"
+            android:title="@string/emulation_quickload" />
+        <item
+            android:id="@+id/nav_savestates"
+            android:title="@string/state_saves" />
+    </group>
+
+    <group android:id="@+id/group_controls">
+        <item
+            android:id="@+id/nav_edit_controls"
+            android:title="@string/emulation_edit_layout" />
+        <item
+            android:id="@+id/nav_toggle_controls"
+            android:title="@string/emulation_toggle_controls" />
+        <item
+            android:id="@+id/nav_adjust_controls"
+            android:title="@string/emulation_control_adjust" />
+    </group>
+
+    <group android:id="@+id/group_settings">
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/preferences_settings" />
+    </group>
+
+    <group android:id="@+id/group_exit">
+        <item
+            android:id="@+id/nav_exit"
+            android:title="@string/emulation_exit" />
+    </group>
+</menu>
